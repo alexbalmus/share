@@ -1,5 +1,8 @@
 os: linux
-dist: xenial
+dist: focal
+virt: vm
+group: edge
+arch: arm64-graviton2
 language: java
 jdk: openjdk11
 
