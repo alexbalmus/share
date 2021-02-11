@@ -70,6 +70,7 @@ jobs:
       stage: build
       before_install: bash _ci/init.sh
       script: bash _ci/build.sh
+      arch: arm64-graviton2
 
 #    - name: "White Source"
 #      stage: build
