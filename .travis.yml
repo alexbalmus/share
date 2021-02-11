@@ -1,10 +1,11 @@
 os: linux
+language: java
+jdk: openjdk11
 dist: focal
 virt: vm
 group: edge
-arch: arm64-graviton2
-language: java
-jdk: openjdk11
+arch:
+  - arm64-graviton2
 
 git:
   depth: false
@@ -71,7 +72,6 @@ jobs:
       stage: build
       before_install: bash _ci/init.sh
       script: bash _ci/build.sh
-    - arch: arm64-graviton2
 
 #    - name: "White Source"
 #      stage: build
