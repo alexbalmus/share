@@ -2,6 +2,10 @@ os: linux
 language: java
 jdk: openjdk11
 dist: focal
+virt: vm
+group: edge
+arch:
+  - arm64-graviton2
 
 git:
   depth: false
