@@ -7,7 +7,7 @@ pushd "$(dirname "${BASH_SOURCE[0]}")/../"
 
 git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Alfresco/alfresco-tas-share-test.git
 cd alfresco-tas-share-test
-git checkout master
+git checkout fix/APPS-add-retry
 
 if [[ "$TRAVIS_BRANCH" = "develop" ]]; then
   NAMESPACE="develop-share"
