@@ -1,1 +1,2 @@
-allure serve /target/surefire-reports/
+allure generate -c reports/allure-results -o reports/allure-results-html
+aws s3 sync reports/allure-results-html https://s3.console.aws.amazon.com/s3/buckets/test-report-allure?region=eu-west-1&tab=objects
