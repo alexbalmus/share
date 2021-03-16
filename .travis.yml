@@ -103,6 +103,7 @@ jobs:
       install: skip
       script:
         - bash _ci/execute_share_web.sh "user-tests.xml"
+        - bash _ci/test-reports.sh
       addons:
         firefox: latest
         artifacts:
@@ -123,12 +124,12 @@ jobs:
 #      name: "Content Tests"
 #      script: bash _ci/execute_share_web.sh "content-tests.xml"
 
-    - name: "Generate test reports"
-      stage: report
-      install: skip
-      script: bash _ci/test-reports.sh
-      addons:
-        firefox: latest
+#    - name: "Generate test reports"
+#      stage: report
+#      install: skip
+#      script: bash _ci/test-reports.sh
+#      addons:
+#        firefox: latest
 
     - name: "Delete environment"
       stage: tearDown
