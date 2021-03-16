@@ -47,10 +47,10 @@ stages:
   - deploy
   - wait
   - tests
+  - report
   - tearDown
   - release
   - company_release
-  - test_reports
 
 before_install:
   - |
@@ -111,22 +111,24 @@ jobs:
               - alfresco-tas-share-test/target/reports
             target_paths: $TRAVIS_BUILD_NUMBER
 
-    - <<: *test-staging
-      name: "User and Site Dashboard Tests"
-      script: bash _ci/execute_share_web.sh "user-and-site-dashboard-tests.xml"
-
-    - <<: *test-staging
-      name: "Admin Tools Tests"
-      script: bash _ci/execute_share_web.sh "admin-tools-tests.xml"
-
-    - <<: *test-staging
-      name: "Content Tests"
-      script: bash _ci/execute_share_web.sh "content-tests.xml"
+#    - <<: *test-staging
+#      name: "User and Site Dashboard Tests"
+#      script: bash _ci/execute_share_web.sh "user-and-site-dashboard-tests.xml"
+#
+#    - <<: *test-staging
+#      name: "Admin Tools Tests"
+#      script: bash _ci/execute_share_web.sh "admin-tools-tests.xml"
+#
+#    - <<: *test-staging
+#      name: "Content Tests"
+#      script: bash _ci/execute_share_web.sh "content-tests.xml"
 
     - name: "Generate test reports"
-      stage: test_reports
+      stage: report
       install: skip
       script: bash _ci/test-reports.sh
+      addons:
+        firefox: latest
 
     - name: "Delete environment"
       stage: tearDown
