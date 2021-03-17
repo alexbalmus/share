@@ -47,7 +47,6 @@ stages:
   - deploy
   - wait
   - tests
-  - report
   - tearDown
   - release
   - company_release
@@ -99,7 +98,7 @@ jobs:
       stage: tests
       jdk: openjdk11
       if: fork=false AND commit_message !~ /\[trigger company release|skip tests\]/
-      before_install: bash _ci/init.sh
+      before_script: bash _ci/init.sh
       install: skip
       script:
         - bash _ci/execute_share_web.sh "user-tests.xml"
@@ -124,11 +123,6 @@ jobs:
 #    - <<: *test-staging
 #      name: "Content Tests"
 #      script: bash _ci/execute_share_web.sh "content-tests.xml"
-
-    - name: "Generate test reports"
-      stage: report
-      install: skip
-      script: bash _ci/test-reports.sh
 
     - name: "Delete environment"
       stage: tearDown
