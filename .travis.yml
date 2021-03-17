@@ -111,15 +111,15 @@ jobs:
               - alfresco-tas-share-test/target/reports
             target_paths: $TRAVIS_BUILD_NUMBER/user_tests
 
-#    - <<: *test-staging
-#      name: "User and Site Dashboard Tests"
-#      script: bash _ci/execute_share_web.sh "user-and-site-dashboard-tests.xml"
-#      addons:
-#        artifacts:
-#          paths:
-#            - alfresco-tas-share-test/target/surefire-reports
-#            - alfresco-tas-share-test/target/reports
-#          target_paths: $TRAVIS_BUILD_NUMBER/user-and-site-dashboard-tests
+    - <<: *test-staging
+      name: "User and Site Dashboard Tests"
+      script: bash _ci/execute_share_web.sh "user-and-site-dashboard-tests.xml"
+      addons:
+        artifacts:
+          paths:
+            - alfresco-tas-share-test/target/surefire-reports
+            - alfresco-tas-share-test/target/reports
+          target_paths: $TRAVIS_BUILD_NUMBER/user-and-site-dashboard-tests
 
     - <<: *test-staging
       name: "Admin Tools Tests"
@@ -131,15 +131,16 @@ jobs:
             - alfresco-tas-share-test/target/reports
           target_paths: $TRAVIS_BUILD_NUMBER/admin-tools-tests
 
-#    - <<: *test-staging
-#      name: "Content Tests"
-#      script: bash _ci/execute_share_web.sh "content-tests.xml"
-#      addons:
-#        artifacts:
-#          paths:
-#            - alfresco-tas-share-test/target/surefire-reports
-#            - alfresco-tas-share-test/target/reports
-#          target_paths: $TRAVIS_BUILD_NUMBER/content-tests
+    - <<: *test-staging
+      name: "Content Tests"
+      script: bash _ci/execute_share_web.sh "content-tests.xml"
+      addons:
+        artifacts:
+          paths:
+            - alfresco-tas-share-test/target/surefire-reports
+            - alfresco-tas-share-test/target/reports
+          target_paths: $TRAVIS_BUILD_NUMBER/content-tests
+
     - name: "Generate test reports"
       stage: report
       install: skip
