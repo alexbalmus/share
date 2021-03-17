@@ -123,6 +123,9 @@ jobs:
       script: bash _ci/execute_share_web.sh "admin-tools-tests.xml"
       addons:
         artifacts:
+          paths:
+            - alfresco-tas-share-test/target/surefire-reports
+            - alfresco-tas-share-test/target/reports
           target_paths: $TRAVIS_BUILD_NUMBER/admin-tools-tests
 
 #    - <<: *test-staging
