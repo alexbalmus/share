@@ -103,6 +103,8 @@ jobs:
       install: skip
       script:
         - bash _ci/execute_share_web.sh "user-tests.xml"
+      after_script:
+        - bash _ci/test-reports.sh
       addons:
         chrome: stable
         artifacts:
