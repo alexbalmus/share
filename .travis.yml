@@ -104,7 +104,7 @@ jobs:
       script:
         - bash _ci/execute_share_web.sh "user-tests.xml"
       addons:
-        firefox: latest
+        chrome: stable
         artifacts:
             paths:
               - alfresco-tas-share-test/target/surefire-reports
@@ -127,8 +127,6 @@ jobs:
       stage: report
       install: skip
       script: bash _ci/test-reports.sh
-      addons:
-        firefox: latest
 
     - name: "Delete environment"
       stage: tearDown
