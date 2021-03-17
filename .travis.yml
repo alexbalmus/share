@@ -47,6 +47,7 @@ stages:
   - deploy
   - wait
   - tests
+  - report
   - tearDown
   - release
   - company_release
@@ -98,31 +99,43 @@ jobs:
       stage: tests
       jdk: openjdk11
       if: fork=false AND commit_message !~ /\[trigger company release|skip tests\]/
-      before_script: bash _ci/init.sh
+      before_install: bash _ci/init.sh
       install: skip
       script:
         - bash _ci/execute_share_web.sh "user-tests.xml"
-      after_script:
-        - bash _ci/test-reports.sh
       addons:
         chrome: stable
         artifacts:
             paths:
               - alfresco-tas-share-test/target/surefire-reports
               - alfresco-tas-share-test/target/reports
-            target_paths: $TRAVIS_BUILD_NUMBER
+            target_paths: $TRAVIS_BUILD_NUMBER/user_tests
 
 #    - <<: *test-staging
 #      name: "User and Site Dashboard Tests"
 #      script: bash _ci/execute_share_web.sh "user-and-site-dashboard-tests.xml"
-#
-#    - <<: *test-staging
-#      name: "Admin Tools Tests"
-#      script: bash _ci/execute_share_web.sh "admin-tools-tests.xml"
-#
+#      addons:
+#        artifacts:
+#          target_paths: $TRAVIS_BUILD_NUMBER/user-and-site-dashboard-tests
+
+    - <<: *test-staging
+      name: "Admin Tools Tests"
+      script: bash _ci/execute_share_web.sh "admin-tools-tests.xml"
+      addons:
+        artifacts:
+          target_paths: $TRAVIS_BUILD_NUMBER/admin-tools-tests
+
 #    - <<: *test-staging
 #      name: "Content Tests"
 #      script: bash _ci/execute_share_web.sh "content-tests.xml"
+#      addons:
+#        artifacts:
+#          target_paths: $TRAVIS_BUILD_NUMBER/content-tests
+    - name: "Generate test reports"
+      stage: report
+      install: skip
+      script:
+        - bash _ci/download-reports.sh
 
     - name: "Delete environment"
       stage: tearDown
