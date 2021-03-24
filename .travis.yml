@@ -104,7 +104,7 @@ jobs:
       script:
         - bash _ci/execute_share_web.sh "user-tests.xml"
       addons:
-        chrome: stable
+        chrome: beta
         artifacts:
           paths:
             - alfresco-tas-share-test/target/surefire-reports
